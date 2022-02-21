@@ -60,15 +60,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppManager\ApplicationManger.cs" />
+    <Compile Include="AppManager\DuckHelper.cs" />
+    <Compile Include="AppManager\HelperBase.cs" />
+    <Compile Include="AppManager\BaseLog.cs" />
+    <Compile Include="AppManager\LoginHelper.cs" />
+    <Compile Include="AppManager\NavigationHelper.cs" />
+    <Compile Include="Data\AccountData.cs" />
+    <Compile Include="LoginTests_Admin_Browsers\BaseTest.cs" />
+    <Compile Include="Test_Elements\TestHeadersArePresented.cs" />
     <Compile Include="Test1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_login.cs">
+    <Compile Include="LoginTests_Admin_Browsers\Test_login_chrome.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="LoginTests_Admin_Browsers\Test_Login_Edge.cs" />
+    <Compile Include="LoginTests_Admin_Browsers\Test_Login_Firefox.cs" />
+    <Compile Include="Test_Elements\TestStickersArePresented.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

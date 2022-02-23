@@ -33,6 +33,10 @@ namespace Selenium_Csharp_2022
             Driver.Navigate().GoToUrl(baseURL + "/admin/");
             return this;
         }
+
+
+        
+
         public NavigationHelper OpenAppearance()
         {
 

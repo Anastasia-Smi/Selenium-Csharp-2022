@@ -12,7 +12,7 @@ namespace Selenium_Csharp_2022
 {
     public class ApplicationManager
     {
-        public IWebDriver Driver { get; }
+        public IWebDriver Driver { get;  }
         //private IWebDriver driver;
         protected string baseURL;
         

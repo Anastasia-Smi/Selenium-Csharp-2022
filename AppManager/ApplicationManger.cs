@@ -21,7 +21,7 @@ namespace Selenium_Csharp_2022
         protected DuckHelper duckHelper { get; }
         //protected NavigationHelper navigationHelper;
 
-        //public  ThreadLocal<ApplicationManager> appThread = new ThreadLocal<ApplicationManager>();
+        public  ThreadLocal<ApplicationManager> appThread = new ThreadLocal<ApplicationManager>();
 
         /// <summary>
         /// Class constructor
@@ -52,16 +52,16 @@ namespace Selenium_Csharp_2022
             }
         }
 
-        //public ApplicationManager GetInstance()
-        //{
-        //    if (!appThread.IsValueCreated)
-        //    {
-        //        ApplicationManager newInstance = new ApplicationManager();
-        //        newInstance.Navigator.OpenHomePage();
-        //        appThread.Value = newInstance;
-        //    }
-        //    return appThread.Value;
-        //}
+        public ApplicationManager GetInstance()
+        {
+            if (!appThread.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.OpenLoginPage();
+                appThread.Value = newInstance;
+            }
+            return appThread.Value;
+        }
 
         //public IWebDriver Driver
         //{

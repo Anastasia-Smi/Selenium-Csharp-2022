@@ -43,13 +43,13 @@ namespace Selenium_Csharp_2022
         }
 
 
-            [TestCategory("Regression")]
-            [Priority(9)]
-            [TestMethod]
-            [Description("Verification of Countries Order that have more zones than 0")]
+        [TestCategory("Regression")]
+        [Priority(9)]
+        [TestMethod]
+        [Description("Verification of Countries Order that have more zones than 0")]
 
-            public void _ZonesOrder()
-            {
+        public void _ZonesOrder()
+        {
             BaseLog.Given("The User is LogOut");
             BaseLog.When("The User LogIn with valid credentials");
             Navigator.OpenLoginPage();
@@ -62,9 +62,9 @@ namespace Selenium_Csharp_2022
             ReadOnlyCollection<IWebElement> rows = Driver.FindElements(By.XPath
             ("//tr[@class='row']"));
 
-            List<string> links = new List<string>(); 
+            List<string> links = new List<string>();
 
-            foreach(var row in rows)
+            foreach (var row in rows)
             {
                 var zone = row.FindElement(By.XPath(".//td[6]"));
                 var zoneValue = zone.Text;
@@ -72,7 +72,8 @@ namespace Selenium_Csharp_2022
 
                 System.Diagnostics.Debug.WriteLine(zoneName + " / " + zoneValue);
 
-                if (int.Parse(zoneValue) > 0) {
+                if (int.Parse(zoneValue) > 0)
+                {
                     var link = row.FindElement(By.XPath(".//td[5]/a"));
                     //link.Click();
 
@@ -81,7 +82,7 @@ namespace Selenium_Csharp_2022
                 }
             }
 
-            foreach(var link in links)
+            foreach (var link in links)
             {
                 Driver.Navigate().GoToUrl(link);
 
@@ -100,6 +101,61 @@ namespace Selenium_Csharp_2022
 
                     Assert.AreEqual(allCountriesEditCountryPage.ToString(), sortedAllCountries.ToString());
                     System.Diagnostics.Debug.WriteLine(sortedAllCountries);
+                }
+            }
+        }
+
+        [TestCategory("Regression")]
+        [Priority(9)]
+        [TestMethod]
+        [Description("Verification of Countries Order")]
+
+        public void _ZonesInAlphabeticalOrder()
+        {
+            
+            BaseLog.Given("The User is LogOut");
+            BaseLog.When("The User LogIn with valid credentials");
+            Navigator.OpenLoginPage();
+            loginHelper.LogIn();
+
+            BaseLog.Then("The user navigates to the 'Geo Zones' page");
+
+            Navigator.OpenGeoZones();
+
+            ReadOnlyCollection<IWebElement> rows = Driver.FindElements(By.XPath
+            ("//tr[@class='row']"));
+
+            List<string> links = new List<string>();
+
+            foreach (var row in rows)
+            {
+                var link = row.FindElement(By.XPath(".//td[3]/a"));
+
+                links.Add(link.GetDomProperty("href"));
+
+                for (int i = 0; i < links.Count; i++)
+
+                {
+                    string linkToCountry= links[i];
+                    Driver.Navigate().GoToUrl(linkToCountry);
+                    {
+                        ReadOnlyCollection<IWebElement> subcountryNameCell = Driver.FindElements(By.XPath
+                        ("//tr/td[3]"));
+
+                        List<String> allZonesEditGeoZonePage = new List<String>();
+
+                        foreach (IWebElement element in subcountryNameCell)
+                        {
+                            allZonesEditGeoZonePage.Add(element.Text);
+                        }
+                        List<String> sortedAllCountries = new List<String>(allZonesEditGeoZonePage);
+                        sortedAllCountries.Sort();
+
+                        Assert.AreEqual(allZonesEditGeoZonePage.ToString(), sortedAllCountries.ToString());
+                        System.Diagnostics.Debug.WriteLine(sortedAllCountries);
+
+                    }
+                    break;
                 }
             }
             }

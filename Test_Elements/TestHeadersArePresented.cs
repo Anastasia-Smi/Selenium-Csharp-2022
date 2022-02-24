@@ -36,6 +36,7 @@ namespace Selenium_Csharp_2022
             //            Начните с прокликивания пунктов меню верхнего уровня.
             //            Для этого нужно научиться получать список элементов,
             //            которые соответствуют этим пунктам меню.
+
             //            Затем нужно сделать цикл со счётчиком
             //            for (int i = 0; i < elementsMenu.Count; i++)
             //            внутри цикла находить пункт меню с порядковым номером i
@@ -44,115 +45,35 @@ namespace Selenium_Csharp_2022
 
 
 
-            IList<IWebElement> elements = Driver.FindElements(By.CssSelector("span.name"));
+          var elementsMenuCount = Driver.FindElements(By.CssSelector("span.name")).Count;
+           
+            for (int i = 0; i < elementsMenuCount; i++)
+            {
+                var elementsMenuList = Driver.FindElements(By.CssSelector("span.name"));
 
+                elementsMenuList[i].Click();
 
-                foreach (IWebElement element in elements)
+                Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
+
+                var subelementsMenu = Driver.FindElements(By.XPath(".//ul[@class = 'docs']/li"));
+
+                for (int a = 0; a < subelementsMenu.Count; a++)
                 {
-
-                       element.Click();
-                    {
-                        for (int i = 0; i < elements.Count; i++)
-                    {
-                        element.FindElements(By.CssSelector("span.name"));
-                        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-                    }
+                    IList<IWebElement> subelementsMenuList = Driver.FindElements(By.XPath(".//ul[@class = 'docs']/li"));
+                    subelementsMenuList[a].Click();
+                    
+                    Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
+                    
                 }
-                }
-            
-        }
 
-
-
-
-        //    List<Headers> GetHeadersList()
-        //    {
-
-            //        {
-            //            var myMenu = Driver.FindElement(By.Id("box-apps-menu-wrapper"));
-            //            List<IWebElement> rows = myMenu.FindElements(By.TagName("li")).ToList();
-
-            //            rows.ForEach(row =>
-            //            {
-            //                row.Click();
-            //                Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-            //            });
-
-            //        }
-            //        return new List<Headers>();
-            //    }
-            //}
-
-
-
-
-
-
-
-
-            //foreach (IWebElement headerispresented in header)
-            //{
-            //    Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-            //}
-
-
-            //        Navigator.OpenAppearance();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenCatalog();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenCountries();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenCustomers();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenGeoZones();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenLanguages();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenModules();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenOrders();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenPages();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenReports();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenSettings();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenSlides();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenTax();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-
-            //        Navigator.OpenTranslations();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenUsers();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //        Navigator.OpenvQmods();
-            //        Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);
-
-            //    }
-            //}
-
-        internal class Headers
-        {
+                Driver.Navigate().Back();
+            }
         }
     }
+            
 }
+
+
 
 
 

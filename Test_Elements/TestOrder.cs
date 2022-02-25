@@ -39,7 +39,7 @@ namespace Selenium_Csharp_2022
             List<String> sortedAllCountries = new List<String>(allCountries);
             sortedAllCountries.Sort();
 
-            Assert.AreEqual(allCountries.ToString(), sortedAllCountries.ToString());
+            Assert.AreEqual(allCountries, sortedAllCountries);
         }
 
 
@@ -99,7 +99,7 @@ namespace Selenium_Csharp_2022
                     List<String> sortedAllCountries = new List<String>(allCountriesEditCountryPage);
                     sortedAllCountries.Sort();
 
-                    Assert.AreEqual(allCountriesEditCountryPage.ToString(), sortedAllCountries.ToString());
+                    Assert.AreEqual(allCountriesEditCountryPage, sortedAllCountries);
                     System.Diagnostics.Debug.WriteLine(sortedAllCountries);
                 }
             }
@@ -151,7 +151,7 @@ namespace Selenium_Csharp_2022
                         List<String> sortedAllCountries = new List<String>(allZonesEditGeoZonePage);
                         sortedAllCountries.Sort();
 
-                        Assert.AreEqual(allZonesEditGeoZonePage.ToString(), sortedAllCountries.ToString());
+                        Assert.AreEqual(allZonesEditGeoZonePage, sortedAllCountries);
                         System.Diagnostics.Debug.WriteLine(sortedAllCountries);
 
                     }

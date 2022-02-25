@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium_Csharp_2022;
 using OpenQA.Selenium.Chrome;
+using System.Collections.ObjectModel;
 
 namespace Selenium_Csharp_2022
 {
@@ -27,19 +28,23 @@ namespace Selenium_Csharp_2022
             Navigator.OpenLoginPage();
             loginHelper.LogIn();
 
-           
-
             Navigator.OpenRubberDucksPage();
-            
-            BaseLog.Then("The user navigates to the Catalog page");
-
-            int ducks = duckHelper.GetDucksCount();
-            int stickers = duckHelper.GetStickersCount();
-
-            Assert.AreEqual(ducks, stickers);
+            System.Threading.Thread.Sleep(9000);
 
 
+            Console.WriteLine("The user navigates to the Catalog page");
 
+            ReadOnlyCollection<IWebElement> ducks = Driver.FindElements(By.CssSelector
+            ("li a.link"));
+
+            foreach (var duck in ducks)
+            {
+                var sticker = Driver.FindElement(By.CssSelector("div.sticker"));
+                Assert.IsTrue(Driver.FindElement((By)sticker).Displayed);
+               
+            }
         }
     }
 }
+
+

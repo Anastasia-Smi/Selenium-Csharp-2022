@@ -78,6 +78,7 @@
     <Compile Include="LoginTests_Admin_Browsers\Test_Login_Firefox.cs" />
     <Compile Include="Test_Elements\TestStickersArePresented.cs" />
     <Compile Include="Test_Elements\TestOrder.cs" />
+    <Compile Include="Test_Elements\UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

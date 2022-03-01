@@ -21,6 +21,7 @@ namespace Selenium_Csharp_2022
         [TestCategory("Regression")]
         [Priority(9)]
 
+
         public void StickersArePresentedTest()
         {
             BaseLog.Given("The User is LogOut");
@@ -34,14 +35,17 @@ namespace Selenium_Csharp_2022
 
             Console.WriteLine("The user navigates to the Catalog page");
 
-            ReadOnlyCollection<IWebElement> ducks = Driver.FindElements(By.CssSelector
-            ("li a.link"));
+            ReadOnlyCollection<IWebElement> products = Driver.FindElements(By.XPath
+            ("//*[@class='product column shadow hover-light']"));
 
-            foreach (var duck in ducks)
+
+            foreach (var product in products)
             {
-                var sticker = Driver.FindElement(By.CssSelector("div.sticker"));
-                Assert.IsTrue(Driver.FindElement((By)sticker).Displayed);
                
+                var sticker = Driver.FindElements(By.CssSelector("div.sticker")).Count;
+
+                Assert.IsTrue(sticker >= 1);
+
             }
         }
     }

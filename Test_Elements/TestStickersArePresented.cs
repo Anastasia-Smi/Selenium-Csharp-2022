@@ -42,9 +42,9 @@ namespace Selenium_Csharp_2022
             foreach (var product in products)
             {
                
-                var sticker = Driver.FindElements(By.CssSelector("div.sticker")).Count;
+                var sticker = product.FindElements(By.CssSelector("div.sticker")).Count;
 
-                Assert.IsTrue(sticker >= 1);
+                Assert.IsTrue(sticker <= 1);
 
             }
         }

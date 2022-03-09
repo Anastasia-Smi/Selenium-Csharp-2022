@@ -12,7 +12,7 @@ namespace Selenium_Csharp_2022
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("task_8(a)Verification of Alphabetical Countries Order")]
+        [Description("TASK_ 8(a)Verification of Alphabetical Countries Order")]
         //а) проверяет, что страны расположены в алфавитном порядке
       
         public void _CountriesInAlphabeticalOrder()
@@ -46,7 +46,7 @@ namespace Selenium_Csharp_2022
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("Task_8(b)_Verification of Alphabetical Countries Order that have more Zones than 0")]
+        [Description("TASK_8(b)_Verification of Alphabetical Countries Order that have more Zones than 0")]
 
         public void _ZonesOrder()
         {
@@ -110,7 +110,7 @@ namespace Selenium_Csharp_2022
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("Task_9_Verification of Countries Order")]
+        [Description("Task_9_Проверить сортировку геозон на странице геозон")]
 
         public void _ZonesInAlphabeticalOrder()
         {
@@ -131,19 +131,20 @@ namespace Selenium_Csharp_2022
 
             foreach (var row in rows)
             {
-               
+
                 var link = row.FindElement(By.XPath(".//td[3]/a"));
 
                 links.Add(link.GetDomProperty("href"));
+            }
 
-                for (int i = 0; i < links.Count; i++)
-
+                //for (int i = 0; i < links.Count; i++)
+                foreach (var link in links)
                 {
-                    string linkToCountry= links[i];
-                    Driver.Navigate().GoToUrl(linkToCountry);
+                    //string linkToCountry= links[i];
+                    Driver.Navigate().GoToUrl(link);
                     {
                         ReadOnlyCollection<IWebElement> subZoneCell = Driver.FindElements(By.XPath
-                        ("//tr [position()>1 and position()<last()] /td[3]"));
+                        ("//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']"));
 
                         //var ubZoneCell = Driver.FindElement(By.XPath
                         //("//tr [position()>1 and position()<last()] /td[3]")).Selected;
@@ -152,10 +153,9 @@ namespace Selenium_Csharp_2022
 
                         foreach (IWebElement element in subZoneCell)
                         {
-                         //   var ubZoneCell = Driver.FindElement(By.XPath
-                         //  ("//tr [position()>1 and position()<last()] /td[3]")).GetProperty("");          Selected.ToString();
+                         var ubZoneCell = Driver.FindElement(By.XPath("//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']")).Text;         
 
-                         //allZonesEditZonePage.Add(ubZoneCell.);      
+                         allZonesEditZonePage.Add(ubZoneCell);      
 
                         }
 
@@ -172,5 +172,5 @@ namespace Selenium_Csharp_2022
                 }
             }
         }    
-    }    
+      
     

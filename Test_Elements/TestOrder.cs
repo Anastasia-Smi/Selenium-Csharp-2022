@@ -115,8 +115,7 @@ namespace Selenium_Csharp_2022
         public void _ZonesInAlphabeticalOrder()
         {
             
-            BaseLog.Given("The User is LogOut");
-            BaseLog.When("The User LogIn with valid credentials");
+           
             Navigator.OpenLoginPage();
             loginHelper.LogIn();
 
@@ -131,29 +130,24 @@ namespace Selenium_Csharp_2022
 
             foreach (var row in rows)
             {
-
                 var link = row.FindElement(By.XPath(".//td[3]/a"));
 
                 links.Add(link.GetDomProperty("href"));
             }
 
-                //for (int i = 0; i < links.Count; i++)
                 foreach (var link in links)
                 {
-                    //string linkToCountry= links[i];
+                   
                     Driver.Navigate().GoToUrl(link);
                     {
-                        ReadOnlyCollection<IWebElement> subZoneCell = Driver.FindElements(By.XPath
-                        ("//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']"));
-
-                        //var ubZoneCell = Driver.FindElement(By.XPath
-                        //("//tr [position()>1 and position()<last()] /td[3]")).Selected;
+                        ReadOnlyCollection<IWebElement> tables = Driver.FindElements(By.XPath
+                        ("//table[@class = 'dataTable']"));
 
                         List< String> allZonesEditZonePage = new List<String>();
 
-                        foreach (IWebElement element in subZoneCell)
+                        foreach (IWebElement table in tables)
                         {
-                         var ubZoneCell = Driver.FindElement(By.XPath("//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']")).Text;         
+                         var ubZoneCell = table.FindElement(By.XPath(".//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']")).Text;         
 
                          allZonesEditZonePage.Add(ubZoneCell);      
 
@@ -165,12 +159,12 @@ namespace Selenium_Csharp_2022
 
                         CollectionAssert.AreEqual(allZonesEditZonePage, sortedAllZonesEditZonePage);
                             //System.Diagnostics.Debug.WriteLine(sortedAllZonesEditZonePage);
-                        }
+                    }
 
-                        }
-                        //break;
                 }
-            }
-        }    
+                     
+        }
+    }
+}    
       
     

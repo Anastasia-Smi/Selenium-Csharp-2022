@@ -17,7 +17,7 @@ namespace Selenium_Csharp_2022
     public class StickersArePresented : ApplicationManager
     {
         [TestMethod]
-        [Description("Verification of Stickers Displaying")]
+        [Description("task_7_Verification of Stickers Displaying")]
         [TestCategory("Regression")]
         [Priority(9)]
 
@@ -44,7 +44,7 @@ namespace Selenium_Csharp_2022
                
                 var sticker = product.FindElements(By.CssSelector("div.sticker")).Count;
 
-                Assert.IsTrue(sticker <= 1);
+                Assert.IsTrue(sticker == 1);
 
             }
         }

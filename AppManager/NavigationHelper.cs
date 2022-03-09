@@ -34,8 +34,13 @@ namespace Selenium_Csharp_2022
             return this;
         }
 
+        public NavigationHelper OpenFirstPage()
 
-        
+        {
+            Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
+            return this;
+        }
+
 
         public NavigationHelper OpenAppearance()
         {
@@ -369,6 +374,44 @@ namespace Selenium_Csharp_2022
         }
 
 
+        public NavigationHelper NewCustomerPage()
+        {
+            Driver.FindElement(By.XPath("//tbody/tr/td/a")).Click();
+            return this;
+        }
+        public NavigationHelper AddNewProductPage()
+        {
+            Driver.FindElement(By.XPath("//a[@class = 'button'] [2]")).Click();
+            return this;
+        }
+        public NavigationHelper AddNewProductPageGeneralTab()
+        {
+            Driver.FindElement(By.XPath("//a[@href = '#tab-general']")).Click();
+            return this;
+        }
+        public NavigationHelper AddNewProductPageInformationTab()
+        {
+            Driver.FindElement(By.XPath("//a[@class = '#tab-information']")).Click();
+            return this;
+        }
+        public NavigationHelper AddNewProductPageDataTab()
+        {
+            Driver.FindElement(By.XPath("//a[@class = '#tab-data']")).Click();
+            return this;
+        }
+
+
+        public NavigationHelper AddNewProductPageSave()
+        {
+            Driver.FindElement(By.Name("save")).Click();
+            return this;
+        }
+
+        public NavigationHelper ClickHomeButton()
+        {
+            Driver.FindElement(By.XPath("//i[@class = 'fa fa-home']")).Click();
+            return this;
+        }
 
     }
 }

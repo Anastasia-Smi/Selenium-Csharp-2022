@@ -49,6 +49,9 @@
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -60,13 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppManager\AddProductHelper.cs" />
+    <Compile Include="AppManager\AddToCardHelper.cs" />
     <Compile Include="AppManager\ApplicationManger.cs" />
+    <Compile Include="AppManager\CreateAccountHelper.cs" />
     <Compile Include="AppManager\DuckHelper.cs" />
     <Compile Include="AppManager\HelperBase.cs" />
     <Compile Include="AppManager\BaseLog.cs" />
     <Compile Include="AppManager\LoginHelper.cs" />
     <Compile Include="AppManager\NavigationHelper.cs" />
     <Compile Include="Data\AccountData.cs" />
+    <Compile Include="Data\NewUserData.cs" />
     <Compile Include="LoginTests_Admin_Browsers\BaseTest.cs" />
     <Compile Include="Test_Elements\TestHeadersArePresented.cs" />
     <Compile Include="Test1.cs" />
@@ -78,12 +85,22 @@
     <Compile Include="LoginTests_Admin_Browsers\Test_Login_Firefox.cs" />
     <Compile Include="Test_Elements\TestStickersArePresented.cs" />
     <Compile Include="Test_Elements\TestOrder.cs" />
-    <Compile Include="Test_Elements\UnitTest1.cs" />
+    <Compile Include="Test_Elements\MatchingTests.cs" />
+    <Compile Include="Test_Elements\TestUserRegistration.cs" />
+    <Compile Include="Test_Elements\TestAddingNewProduct.cs" />
+    <Compile Include="Test_Elements\TestAddToCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PageObject\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="duck-central-park-img.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

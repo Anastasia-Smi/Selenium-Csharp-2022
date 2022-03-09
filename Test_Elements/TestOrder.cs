@@ -12,12 +12,12 @@ namespace Selenium_Csharp_2022
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("Verification of Countries Order")]
-        
+        [Description("task_8(a)Verification of Alphabetical Countries Order")]
+        //а) проверяет, что страны расположены в алфавитном порядке
       
         public void _CountriesInAlphabeticalOrder()
         {
-            //а) проверяет, что страны расположены в алфавитном порядке
+            
             BaseLog.Given("The User is LogOut");
             BaseLog.When("The User LogIn with valid credentials");
             Navigator.OpenLoginPage();
@@ -39,14 +39,14 @@ namespace Selenium_Csharp_2022
             List<String> sortedAllCountries = new List<String>(allCountries);
             sortedAllCountries.Sort();
 
-            Assert.AreEqual(allCountries, sortedAllCountries);
+            CollectionAssert.AreEqual(allCountries, sortedAllCountries);
         }
 
 
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("Verification of Countries Order that have more zones than 0")]
+        [Description("Task_8(b)_Verification of Alphabetical Countries Order that have more Zones than 0")]
 
         public void _ZonesOrder()
         {
@@ -88,7 +88,7 @@ namespace Selenium_Csharp_2022
 
                 {
                     ReadOnlyCollection<IWebElement> subcountryNameCell = Driver.FindElements(By.XPath
-                    ("//tr/td[3]"));
+                    ("//tr [position()>1 and position()<last()] /td[3]"));
 
                     List<String> allCountriesEditCountryPage = new List<String>();
 
@@ -99,16 +99,18 @@ namespace Selenium_Csharp_2022
                     List<String> sortedAllCountries = new List<String>(allCountriesEditCountryPage);
                     sortedAllCountries.Sort();
 
-                    Assert.AreEqual(allCountriesEditCountryPage, sortedAllCountries);
+                    CollectionAssert.AreEqual(allCountriesEditCountryPage, sortedAllCountries);
                     System.Diagnostics.Debug.WriteLine(sortedAllCountries);
                 }
             }
         }
 
+
+
         [TestCategory("Regression")]
         [Priority(9)]
         [TestMethod]
-        [Description("Verification of Countries Order")]
+        [Description("Task_9_Verification of Countries Order")]
 
         public void _ZonesInAlphabeticalOrder()
         {
@@ -129,6 +131,7 @@ namespace Selenium_Csharp_2022
 
             foreach (var row in rows)
             {
+               
                 var link = row.FindElement(By.XPath(".//td[3]/a"));
 
                 links.Add(link.GetDomProperty("href"));
@@ -139,25 +142,35 @@ namespace Selenium_Csharp_2022
                     string linkToCountry= links[i];
                     Driver.Navigate().GoToUrl(linkToCountry);
                     {
-                        ReadOnlyCollection<IWebElement> subcountryNameCell = Driver.FindElements(By.XPath
-                        ("//tr/td[3]"));
+                        ReadOnlyCollection<IWebElement> subZoneCell = Driver.FindElements(By.XPath
+                        ("//tr [position()>1 and position()<last()] /td[3]"));
 
-                        List<String> allZonesEditGeoZonePage = new List<String>();
+                        //var ubZoneCell = Driver.FindElement(By.XPath
+                        //("//tr [position()>1 and position()<last()] /td[3]")).Selected;
 
-                        foreach (IWebElement element in subcountryNameCell)
+                        List< String> allZonesEditZonePage = new List<String>();
+
+                        foreach (IWebElement element in subZoneCell)
                         {
-                            allZonesEditGeoZonePage.Add(element.Text);
+                         //   var ubZoneCell = Driver.FindElement(By.XPath
+                         //  ("//tr [position()>1 and position()<last()] /td[3]")).GetProperty("");          Selected.ToString();
+
+                         //allZonesEditZonePage.Add(ubZoneCell.);      
+
                         }
-                        List<String> sortedAllCountries = new List<String>(allZonesEditGeoZonePage);
-                        sortedAllCountries.Sort();
 
-                        Assert.AreEqual(allZonesEditGeoZonePage, sortedAllCountries);
-                        System.Diagnostics.Debug.WriteLine(sortedAllCountries);
+                        List<String> sortedAllZonesEditZonePage = new List<String>(allZonesEditZonePage);
 
-                    }
-                    break;
+                        sortedAllZonesEditZonePage.Sort();
+
+                        CollectionAssert.AreEqual(allZonesEditZonePage, sortedAllZonesEditZonePage);
+                            //System.Diagnostics.Debug.WriteLine(sortedAllZonesEditZonePage);
+                        }
+
+                        }
+                        //break;
                 }
             }
-            }
-        }
-    }
+        }    
+    }    
+    

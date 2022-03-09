@@ -19,9 +19,11 @@ namespace Selenium_Csharp_2022
         protected LoginHelper loginHelper;
         protected NavigationHelper Navigator { get; }
         protected DuckHelper duckHelper { get; }
-        //protected NavigationHelper navigationHelper;
+        protected CreateAccountHelper accountCreator { get; }
+        protected AddProductHelper addProductHelper { get; }
+        protected AddToCardHelper addToCardHelper { get; }
 
-        public  ThreadLocal<ApplicationManager> appThread = new ThreadLocal<ApplicationManager>();
+        public ThreadLocal<ApplicationManager> appThread = new ThreadLocal<ApplicationManager>();
 
         /// <summary>
         /// Class constructor
@@ -35,6 +37,9 @@ namespace Selenium_Csharp_2022
             loginHelper = new LoginHelper(this);
             Navigator = new NavigationHelper(this, baseURL);
             duckHelper = new DuckHelper(this);
+            accountCreator = new CreateAccountHelper(this, baseURL);
+            addProductHelper = new AddProductHelper(this);
+            addToCardHelper = new AddToCardHelper(this);
         }
 
         /// <summary>

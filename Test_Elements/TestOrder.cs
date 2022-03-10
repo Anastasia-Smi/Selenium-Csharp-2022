@@ -119,8 +119,7 @@ namespace Selenium_Csharp_2022
             Navigator.OpenLoginPage();
             loginHelper.LogIn();
 
-            BaseLog.Then("The user navigates to the 'Geo Zones' page");
-
+            
             Navigator.OpenGeoZones();
 
             ReadOnlyCollection<IWebElement> rows = Driver.FindElements(By.XPath
@@ -140,14 +139,14 @@ namespace Selenium_Csharp_2022
                    
                     Driver.Navigate().GoToUrl(link);
                     {
-                        ReadOnlyCollection<IWebElement> tables = Driver.FindElements(By.XPath
-                        ("//table[@class = 'dataTable']"));
+                        ReadOnlyCollection<IWebElement> dropDowns = Driver.FindElements(By.XPath
+                        ("//table[@class = 'dataTable']//td [3]"));
 
                         List< String> allZonesEditZonePage = new List<String>();
 
-                        foreach (IWebElement table in tables)
+                        foreach (IWebElement dropdown in dropDowns)
                         {
-                         var ubZoneCell = table.FindElement(By.XPath(".//tr[position()>1 and position()<last()]/td [3]/select/option[@selected='selected']")).Text;         
+                         var ubZoneCell = dropdown.FindElement(By.XPath(".//option[@selected='selected']")).Text;         
 
                          allZonesEditZonePage.Add(ubZoneCell);      
 

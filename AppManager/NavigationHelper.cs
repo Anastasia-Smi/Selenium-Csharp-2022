@@ -413,6 +413,13 @@ namespace Selenium_Csharp_2022
             return this;
         }
 
+        public NavigationHelper ClicAddNewCountryButton()
+        {
+            var AddNewCountryButton = Driver.FindElement(By.CssSelector(".button"));
+            AddNewCountryButton.Click();
+            return this;
+        }
+
     }
 }
 

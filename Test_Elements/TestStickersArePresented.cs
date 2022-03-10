@@ -24,8 +24,7 @@ namespace Selenium_Csharp_2022
 
         public void StickersArePresentedTest()
         {
-            BaseLog.Given("The User is LogOut");
-            BaseLog.When("The User LogIn with valid credentials");
+
             Navigator.OpenLoginPage();
             loginHelper.LogIn();
 

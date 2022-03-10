@@ -123,7 +123,7 @@ namespace Selenium_Csharp_2022
 
             Navigator.OpenCatalogCatalog();
 
-            Assert.IsTrue(Driver.FindElement(By.LinkText(productName)).Displayed);
+            //Assert.IsTrue(Driver.FindElement(By.LinkText(productName)).Displayed);
 
         }
     }

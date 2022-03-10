@@ -158,7 +158,7 @@ namespace Selenium_Csharp_2022
         }
         public AddProductHelper HeadTitlePlace(string headtitle)
         {
-            var headtitleplace = Driver.FindElement(By.Name("sku"));
+            var headtitleplace = Driver.FindElement(By.Name("head_title[en]"));
             headtitleplace.Click();
             headtitleplace.SendKeys(headtitle);
             return this;
@@ -166,7 +166,7 @@ namespace Selenium_Csharp_2022
         public AddProductHelper SKUPlaceholder(string skuValue)
 
         {
-            var sku = Driver.FindElement(By.Name("date_valid_to"));
+            var sku = Driver.FindElement(By.Name("sku"));
             sku.Click();
             sku.SendKeys(skuValue);
             return this;
@@ -191,7 +191,7 @@ namespace Selenium_Csharp_2022
         public AddProductHelper WeightSelector(string weightValue)
 
         {
-            var weightSelector = Driver.FindElement(By.Name("date_valid_to"));
+            var weightSelector = Driver.FindElement(By.Name("weight"));
             weightSelector.Click();
             weightSelector.SendKeys(weightValue);
             return this;

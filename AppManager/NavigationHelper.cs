@@ -391,12 +391,12 @@ namespace Selenium_Csharp_2022
         }
         public NavigationHelper AddNewProductPageInformationTab()
         {
-            Driver.FindElement(By.XPath("//a[@class = '#tab-information']")).Click();
+            Driver.FindElement(By.XPath("//a[@href = '#tab-information']")).Click();
             return this;
         }
         public NavigationHelper AddNewProductPageDataTab()
         {
-            Driver.FindElement(By.XPath("//a[@class = '#tab-data']")).Click();
+            Driver.FindElement(By.XPath("//a[@href = '#tab-data']")).Click();
             return this;
         }
 

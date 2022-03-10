@@ -27,17 +27,17 @@ namespace Selenium_Csharp_2022
             Navigator.OpenFirstPage();
             Navigator.NewCustomerPage();
 
-            var Password = "user";
+            var Password = $"P{DateTime.Now:MMddhhmmss}";
             var TaxID = "12345";
             var Company = "TestCompany";
-            var FirstName = "TestFirstName";
-            var LastName = "TestLastName";
+            var FirstName = $"FN{DateTime.Now:MMddhhmmss}"; 
+            var LastName = $"LN{DateTime.Now:MMddhhmmss}";
             var Address1 = "TestAddress1";
             var Address2 = "TestAddress2";
             var Postcode = "12395";
-            var City = "TestCity";
-            var Email = "testuser@gmail.com";
-            var Phone = "12345678";
+            var City = $"City{DateTime.Now:MMddhhmmss}";
+            var Email = $"AAA_{DateTime.Now:MMddyyyyhhmmsstt}" + "@gmail.com";
+            var Phone = $"1{DateTime.Now:MMddhhmmss}";
 
 
             var TaxIDfIELD = Driver.FindElement(By.Name("tax_id"));
@@ -110,8 +110,10 @@ namespace Selenium_Csharp_2022
             var PasswordField = Driver.FindElement(By.Name("password"));
             PasswordField.Clear();
             PasswordField.SendKeys(Password);
-            Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice success")).Displayed);
+            //Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice success")).Displayed);
 
+            loginHelper.ClickLogInButton();
+           
         }
 
     }

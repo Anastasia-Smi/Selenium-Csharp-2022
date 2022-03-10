@@ -45,6 +45,14 @@ namespace Selenium_Csharp_2022
         //    Driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         //}
 
+        public LoginHelper ClickLogInButton()
+        {
+        var LoginButton = Driver.FindElement(By.Name("login"));
+            LoginButton.Click();
+            return this;
+        }
+
+
         public void LogOut()
         {
             if (IsLoggedIn())

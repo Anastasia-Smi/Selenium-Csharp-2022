@@ -63,19 +63,26 @@ namespace Selenium_Csharp_2022
             
             string mainWindow = Driver.CurrentWindowHandle;
             ICollection<string> oldWindows = Driver.WindowHandles;
-            Assert.AreEqual(Driver.WindowHandles.Count, 1);
+
+            
+            //Assert.AreEqual(Driver.WindowHandles.Count, 1);
 
 
             foreach (var link in links)
             {
                 Driver.Navigate().GoToUrl(link);
                 {
-                    wait.Until(wd => wd.WindowHandles.Count == 2);
-                    foreach (string window in Driver.WindowHandles)
+                    ICollection<string> Windows = Driver.WindowHandles;
+                    List<string> windows = new List<string>();
+                    string newWindow = Driver.CurrentWindowHandle;
+                    
+                    //wait.Until(wd => wd.WindowHandles.Count == 2); id new window that didn't exist before in list
+                    foreach (string window in windows)
                     {
-                        if (mainWindow != window)
+                        if (newWindow != mainWindow)
                         {
-                            Driver.SwitchTo().Window(window);
+                            Driver.Close();
+                            Driver.SwitchTo().Window(mainWindow);
                             break;
                         }
                     }
@@ -86,12 +93,7 @@ namespace Selenium_Csharp_2022
                     //Driver.SwitchTo().Window(mainWindow);
 
                 }
-
             }
-           
-
-
-
         }
     }
 }

@@ -89,7 +89,7 @@
     <Compile Include="Test_Elements\TestUserRegistration.cs" />
     <Compile Include="Test_Elements\TestAddingNewProduct.cs" />
     <Compile Include="Test_Elements\TestAddToCard.cs" />
-    <Compile Include="Test_Elements\UnitTest1.cs" />
+    <Compile Include="Test_Elements\TestLinksNewWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

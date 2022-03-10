@@ -52,21 +52,25 @@ namespace Selenium_Csharp_2022
 
            var productQuantity2 = Driver.FindElement(By.CssSelector("span.quantity"));
            productQuantity2.GetAttribute("textContant");
-           wait.Until(ExpectedConditions.TextToBePresentInElement(productQuantity, "2"));
+           wait.Until(ExpectedConditions.TextToBePresentInElement(productQuantity2, "2"));
 
             Navigator.ClickHomeButton();
             addToCardHelper.SelectTheFirstProduct();
             addToCardHelper.AddToCardButtonClick();
 
             var productQuantity3 = Driver.FindElement(By.CssSelector("span.quantity"));
-           
+            wait.Until(ExpectedConditions.TextToBePresentInElement(productQuantity3, "3"));
 
             addToCardHelper.CheckoutClick();
+
+
 
             var productName = Driver.FindElement(By.XPath("(//td[@class ='item'])[1]"));
             var productName2 = Driver.FindElement(By.XPath("(//td[@class ='item'])[2]"));
             var productName3 = Driver.FindElement(By.XPath("(//td[@class ='item'])[3]"));
-            
+
+
+
             addToCardHelper.RemoveButtonClick();
             wait.Until(ExpectedConditions.StalenessOf(productName));
 

@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using Selenium_Csharp_2022;
 using OpenQA.Selenium.Chrome;
-using System.Collections.ObjectModel;
 using SeleniumExtras.WaitHelpers;
+using System.Collections.ObjectModel;
 
 
 namespace Selenium_Csharp_2022
@@ -64,23 +66,38 @@ namespace Selenium_Csharp_2022
             addToCardHelper.CheckoutClick();
 
 
+            ReadOnlyCollection<IWebElement> buttons = Driver.FindElements(By.XPath
+            ("//button [@value = 'Remove']"));
 
-            var productName = Driver.FindElement(By.XPath("(//td[@class ='item'])[1]"));
-            var productName2 = Driver.FindElement(By.XPath("(//td[@class ='item'])[2]"));
-            var productName3 = Driver.FindElement(By.XPath("(//td[@class ='item'])[3]"));
+            List<string> Deletebuttons = new List<string>();
+
+            foreach (var Deletebutton in buttons)
+            {
+                var productName = Driver.FindElement(By.XPath("(//button [@value = 'Remove']"));
+                Deletebutton.Click();
+                wait.Until(ExpectedConditions.StalenessOf(productName));
+
+                //Add(Deletebutton.GetAttribute("name"));
+            };
 
 
 
-            addToCardHelper.RemoveButtonClick();
-            wait.Until(ExpectedConditions.StalenessOf(productName));
+            //var productName = Driver.FindElement(By.XPath("(//button [@value = 'Remove']"));
+            //var productName2 = Driver.FindElement(By.XPath("(//td[@class ='item'])[2]"));
+            //var productName3 = Driver.FindElement(By.XPath("(//td[@class ='item'])[3]"));
 
 
-            addToCardHelper.RemoveButtonClick();
-            wait.Until(ExpectedConditions.StalenessOf(productName2));
+
+            //addToCardHelper.RemoveButtonClick();
+            //wait.Until(ExpectedConditions.StalenessOf(productName));
+
+
+            //addToCardHelper.RemoveButtonClick();
+           // wait.Until(ExpectedConditions.StalenessOf(productName2));
 
         
-            addToCardHelper.RemoveButtonClick();
-            wait.Until(ExpectedConditions.StalenessOf(productName3));
+            //addToCardHelper.RemoveButtonClick();
+           // wait.Until(ExpectedConditions.StalenessOf(productName3));
         }
     }
 }

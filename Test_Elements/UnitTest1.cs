@@ -55,7 +55,7 @@ namespace Selenium_Csharp_2022
 
             foreach (var link in externalLinks)
             {
-                //var externalLink = link.FindElement(By.XPath(".//td/a[@target= '_blank']")); ;
+                //var externalLink = link.FindElement(By.XPath(".//td/a[@target= '_blank']")); 
 
                 links.Add(link.GetDomProperty("href"));
             }

@@ -46,8 +46,6 @@ namespace Selenium_Csharp_2022
             Navigator.OpenCountries();
             Navigator.ClicAddNewCountryButton();
 
-
-
             ReadOnlyCollection<IWebElement> externalLinks = Driver.FindElements(By.XPath
             ("//td/a[@target= '_blank']"));
 

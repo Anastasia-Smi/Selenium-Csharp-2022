@@ -11,7 +11,7 @@ namespace Selenium_Csharp_2022
     public class HeadersArePresented : ApplicationManager
     {
         [TestMethod]
-        [Description("Task_6_Verification of Headers Displaying")]
+        [Description("TASK_6_Verification of Headers Displaying")]
         [TestCategory("Regression")]
         [Priority(9)]
 
@@ -41,7 +41,6 @@ namespace Selenium_Csharp_2022
                     
                     Assert.IsTrue(Driver.FindElement(By.CssSelector("#content >h1")).Displayed);  
                 }
-                Driver.Navigate().Back();
             }
         }
     }         

@@ -93,11 +93,21 @@ namespace Selenium_Csharp_2022
             return this;
         }
 
+        public void SetDatepicker(IWebDriver driver, string cssSelector, string date)
+        {
+            new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until<bool>(
+                d => driver.FindElement(By.CssSelector(cssSelector)).Displayed);
+            (driver as IJavaScriptExecutor).ExecuteScript(
+                String.Format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
+        }
+
         public AddProductHelper DateValidFrom(string dateFromValue)
 
         {
             var calendar = Driver.FindElement(By.Name("date_valid_from"));
             calendar.Click();
+            calendar.SendKeys(Keys.ArrowLeft);
+            calendar.SendKeys(Keys.ArrowLeft);
             calendar.SendKeys(dateFromValue);
 
             return this;
@@ -108,7 +118,10 @@ namespace Selenium_Csharp_2022
         {
             var calendarTo = Driver.FindElement(By.Name("date_valid_to"));
             calendarTo.Click();
+            calendarTo.SendKeys(Keys.ArrowLeft);
+            calendarTo.SendKeys(Keys.ArrowLeft);
             calendarTo.SendKeys(dateToValue);
+
             return this;
         }
         /// <summary>

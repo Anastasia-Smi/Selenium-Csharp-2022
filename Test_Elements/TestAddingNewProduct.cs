@@ -21,27 +21,6 @@ namespace Selenium_Csharp_2022
         [Description("TASK_12_Verification of Adding a new product")]
         [TestCategory("Regression")]
         [Priority(9)]
-        //Сделайте сценарий для добавления нового товара(продукта) в учебном приложении litecart(в админке).
-
-        //Для добавления товара нужно открыть меню Catalog,
-        //в правом верхнем углу нажать кнопку "Add New Product", заполнить поля с информацией о товаре и сохранить.
-
-        //Достаточно заполнить только информацию на вкладках General,
-        //Information и Prices.Скидки(Campains) на вкладке Prices можно не добавлять.
-
-        //Переключение между вкладками происходит не мгновенно,
-        //поэтому после переключения можно сделать небольшую паузу(о том, как делать
-        //более правильные ожидания, будет рассказано в следующих занятиях).
-
-        //Картинку с изображением товара нужно уложить в репозиторий
-        //вместе с кодом.При этом указывать в коде полный абсолютный путь к
-        //файлу плохо, на другой машине работать не будет.
-        //Надо средствами языка
-        //программирования преобразовать относительный путь в абсолютный.
-
-
-        //После сохранения товара нужно убедиться, что он появился
-        //в каталоге (в админке). 
 
         public void RegistrationTest()
         {
@@ -65,9 +44,7 @@ namespace Selenium_Csharp_2022
             var quantity = "40";
             var dateFrom = "02222022";
             var dateTo = "03032023";
-            var imgAddress = "C:/Users/akurd/Downloads/duck-central-park-img.jpg";
-
-
+            string imgAddress = AppDomain.CurrentDomain.BaseDirectory + "\\duck-central-park-img.jpg";
 
             Navigator.OpenLoginPage();
             loginHelper.LogIn();
@@ -78,14 +55,9 @@ namespace Selenium_Csharp_2022
             addProductHelper.NamePlaceholder(productName);
             addProductHelper.CodePlaceholder(productCode);
 
-            //select category skip for now
             addProductHelper.ProductGroups();
             addProductHelper.Quantity(quantity);
 
-
-            //select quantity unit skip for now
-
-            //select sold out status
             addProductHelper.UploadImages(imgAddress);
 
             addProductHelper.DateValidFrom(dateFrom);
@@ -93,13 +65,13 @@ namespace Selenium_Csharp_2022
 
 
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            //IWebElement PageInfoTab = wait.Until(d => d.FindElement(By.XPath("//a[@class = '#tab-information']")));
+ 
 
             Navigator.AddNewProductPageInformationTab();
 
             addProductHelper.ManuFacturerDropDown();
 
-            //select supplier-- skip for now
+
             addProductHelper.KeywordsPlaceholder(keyWords);
             addProductHelper.ShortDescriptionPlaceholder(shortDescription);
             addProductHelper.DescriptionField(description);
@@ -119,11 +91,12 @@ namespace Selenium_Csharp_2022
             addProductHelper.Dimensions(width, height, thickness);
             addProductHelper.AttributesPlaceholder(attributes);
 
+            Navigator.AddNewProductPageGeneralTab();
             Navigator.AddNewProductPageSave();
 
             Navigator.OpenCatalogCatalog();
 
-            //Assert.IsTrue(Driver.FindElement(By.LinkText(productName)).Displayed);
+            Assert.IsTrue(Driver.FindElement(By.LinkText(productName)).Displayed);
 
         }
     }

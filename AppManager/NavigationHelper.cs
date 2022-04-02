@@ -403,7 +403,7 @@ namespace Selenium_Csharp_2022
 
         public NavigationHelper AddNewProductPageSave()
         {
-            Driver.FindElement(By.Name("save")).Click();
+            Driver.FindElement(By.XPath("//button[@name='save']")).Click();
             return this;
         }
 

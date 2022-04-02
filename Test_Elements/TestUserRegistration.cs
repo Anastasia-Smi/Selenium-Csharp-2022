@@ -27,7 +27,7 @@ namespace Selenium_Csharp_2022
             Navigator.OpenFirstPage();
             Navigator.NewCustomerPage();
 
-            var Password = $"P{DateTime.Now:MMddhhmmss}";
+            var Password = $"p{DateTime.Now:MMddhhmmss}";
             var TaxID = "12345";
             var Company = "TestCompany";
             var FirstName = $"FN{DateTime.Now:MMddhhmmss}"; 
@@ -36,7 +36,7 @@ namespace Selenium_Csharp_2022
             var Address2 = "TestAddress2";
             var Postcode = "12395";
             var City = $"City{DateTime.Now:MMddhhmmss}";
-            var Email = $"AAA_{DateTime.Now:MMddyyyyhhmmsstt}" + "@gmail.com";
+            var Email = $"aaa_{DateTime.Now:MMddyyyyhhmmss}" + "@gmail.com";
             var Phone = $"1{DateTime.Now:MMddhhmmss}";
 
 
@@ -94,15 +94,12 @@ namespace Selenium_Csharp_2022
             accountCreator.CountryDropDown();
 
             accountCreator.CreateAccountButton();
-
-
-            ///select country from dropdown
-            //verify successfull message 
-            //Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice success")).Displayed);
+        
+            Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice")).Displayed);
 
             accountCreator.ClickLogOutButton();
 
-            //succes message
+            Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice")).Displayed);
             var EmailAddressFiels = Driver.FindElement(By.Name("email"));
             EmailAddressFiels.Clear();
             EmailAddressFiels.SendKeys(Email);
@@ -110,10 +107,11 @@ namespace Selenium_Csharp_2022
             var PasswordField = Driver.FindElement(By.Name("password"));
             PasswordField.Clear();
             PasswordField.SendKeys(Password);
-            //Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice success")).Displayed);
 
             loginHelper.ClickLogInButton();
-           
+            Assert.IsTrue(Driver.FindElement(By.CssSelector(".notice")).Displayed);
+            accountCreator.ClickLogOutButton();
+
         }
 
     }

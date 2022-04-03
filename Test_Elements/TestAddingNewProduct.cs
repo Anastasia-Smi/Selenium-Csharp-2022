@@ -25,7 +25,7 @@ namespace Selenium_Csharp_2022
         public void RegistrationTest()
         {
 
-            var productName = "Test Duck";
+            var productName = $"product{DateTime.Now:MMddhhmmss}";
             var productCode = "123";
             var Quantity = "7";
             var keyWords = "Duck";

@@ -66,18 +66,26 @@ namespace Selenium_Csharp_2022
             addToCardHelper.CheckoutClick();
 
 
+            ReadOnlyCollection<IWebElement> products = Driver.FindElements(By.XPath
+            ("//li [@class = 'item']"));
+
             ReadOnlyCollection<IWebElement> buttons = Driver.FindElements(By.XPath
             ("//button [@value = 'Remove']"));
 
+            ReadOnlyCollection<IWebElement> productsInTab = Driver.FindElements(By.XPath
+           ("//td [@class = 'item']"));
+
             List<string> Deletebuttons = new List<string>();
 
-            foreach (var Deletebutton in buttons)
+            foreach (var product in products)
             {
-                var productName = Driver.FindElement(By.XPath("(//button [@value = 'Remove']"));
-                Deletebutton.Click();
+                var productName = Driver.FindElement(By.XPath("//td [@class = 'item']"));
+     
+                wait.Until(ExpectedConditions.ElementToBeClickable((By.XPath("(//p/button [@name = 'remove_cart_item']")))).Click();
+           
                 wait.Until(ExpectedConditions.StalenessOf(productName));
 
-                //Add(Deletebutton.GetAttribute("name"));
+               
             };
 
 

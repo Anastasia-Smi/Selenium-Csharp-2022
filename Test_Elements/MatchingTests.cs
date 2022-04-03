@@ -38,7 +38,16 @@ namespace Selenium_Csharp_2022
 
             var regPriceColor = product.FindElement(By.XPath
                 (".//*[@class = 'regular-price']")).GetCssValue("color");
-            var regPriceColorRGB = regPriceColor.Substring(5, 13);
+            var  regPriceColorRGB = regPriceColor.Substring(5, 13);
+
+            string[] regPriceColorRGB1s = regPriceColorRGB.Split(',',' ');
+            var regPriceColorR = regPriceColorRGB1s[0];
+            var regPriceColorG = regPriceColorRGB1s[2];
+            var regPriceColorB= regPriceColorRGB1s[4];
+
+            Assert.IsTrue(regPriceColorR == regPriceColorG);
+            Assert.IsTrue(regPriceColorG == regPriceColorB);
+
 
 
             var auPrice = product.FindElement(By.XPath(".//*[@class = 'campaign-price']"))?.Text;
@@ -49,7 +58,14 @@ namespace Selenium_Csharp_2022
 
             var auPriceColor = Driver.FindElement(By.CssSelector
                 ("#box-campaigns .campaign-price")).GetCssValue("color");
-            var  auPriceColorRGB = auPriceColor.Substring(5, 12);
+            var auPriceColorRGB = auPriceColor.Substring(5, 12);
+            
+            string[] auPriceColorRGB2 = auPriceColorRGB.Split(',', ' ');
+            var auPriceColorRGB_G = auPriceColorRGB2[2];
+            var auPriceColorRGB_B = auPriceColorRGB2[4];
+            
+            var auPriceColorRGB_Gg = int.Parse(auPriceColorRGB_G);
+            var auPriceColorRGB_Bb = int.Parse(auPriceColorRGB_B);
 
 
             var auPriceSize = Driver.FindElement(By.CssSelector
@@ -70,14 +86,27 @@ namespace Selenium_Csharp_2022
 
             var regPriceIntSize = Driver.FindElement(By.XPath(".//*[@class = 'regular-price']")).GetCssValue("font-size").Trim(new char[] { 'p', 'x' });
             var regPriceIntRGB = regPriceIntColor.Substring(5, 13);
+
+            string[] regPriceColorRGB2s = regPriceIntRGB.Split(',', ' ');
+            var regPriceIntColorR = regPriceColorRGB1s[0];
+            var regPriceIntColorG = regPriceColorRGB1s[2];
+            var regPriceIntColorB = regPriceColorRGB1s[4];
+
+
             var regPriceIntTxtDecor = Driver.FindElement(By.XPath(".//*[@class = 'regular-price']")).GetCssValue("text-decoration");
 
             var regPriceIntTxtDecorLine = regPriceIntTxtDecor.Substring(0, 12);
 
+           
 
 
             var auPriceIntColor = Driver.FindElement(By.XPath(".//*[@class = 'campaign-price']")).GetCssValue("color");
             var auPriceIntColorRGB = auPriceIntColor.Substring(5, 12);
+            string[] auPriceIntColorRGB2 = auPriceIntColorRGB.Split(',', ' ');
+            var auPriceIntColorRGB_G = auPriceIntColorRGB2[2];
+            var auPriceIntColorRGB_B = auPriceIntColorRGB2[4];
+            var auPriceIntColorRGB_Gg = int.Parse(auPriceIntColorRGB_G);
+            var auPriceIntColorRGB_Bb = int.Parse(auPriceIntColorRGB_B);
 
 
             var auPriceIntFont = Driver.FindElement(By.XPath(".//*[@class = 'campaign-price']")).TagName;
@@ -97,13 +126,19 @@ namespace Selenium_Csharp_2022
 
             Assert.AreEqual(regPriceDecorLine, "line-through");
             Assert.AreEqual(regPriceIntTxtDecorLine, "line-through");
-            Assert.AreEqual(regPriceColorRGB, "119, 119, 119" );
-            Assert.AreEqual(regPriceIntRGB, "102, 102, 102");
+            
+            Assert.IsTrue(regPriceColorR == regPriceColorG);
+            Assert.IsTrue(regPriceColorG == regPriceColorB);
+            Assert.IsTrue(regPriceIntColorR == regPriceIntColorG);
+            Assert.IsTrue(regPriceIntColorG == regPriceIntColorB);
+
 
             Assert.AreEqual(auPricefont, "strong");
             Assert.AreEqual(auPriceIntFont, "strong");
-            Assert.AreEqual(auPriceColorRGB, "204, 0, 0, 1" );
-            Assert.AreEqual(auPriceIntColorRGB, "204, 0, 0, 1" );
+            Assert.IsTrue(auPriceIntColorRGB_Gg == 0);
+            Assert.IsTrue(auPriceIntColorRGB_Bb == 0);
+            Assert.IsTrue(auPriceColorRGB_Gg == 0);
+            Assert.IsTrue(auPriceColorRGB_Bb==0);
 
             Assert.IsTrue(sizeAuIntPrice > sizeIntRegPrice);
             Assert.IsTrue(sizeAuPrice > sizeRegPrice);

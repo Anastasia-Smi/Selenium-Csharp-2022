@@ -53,31 +53,65 @@ namespace Selenium_Csharp_2022
 
             foreach (var link in externalLinks)
             {
-                //var externalLink = link.FindElement(By.XPath(".//td/a[@target= '_blank']")); 
-
-                links.Add(link.GetDomProperty("href"));
+               links.Add(link.GetDomProperty("href"));
             }
 
-            
+            //save current link
             string mainWindow = Driver.CurrentWindowHandle;
+
             ICollection<string> oldWindows = Driver.WindowHandles;
 
-            
             //Assert.AreEqual(Driver.WindowHandles.Count, 1);
 
+           
+            //foreach (var link in links)
+            //{
 
-            foreach (var link in links)
+
+            //    Driver.Navigate().  GoToUrl(link);
+
+            //    {
+            //        ICollection<string> Windows = Driver.WindowHandles;
+            //        List<string> windows = new List<string>();
+            //        string newWindow = Driver.CurrentWindowHandle;
+                    
+            //        //wait.Until(wd => wd.WindowHandles.Count == 2); id new window that didn't exist before in list
+            //        foreach (string window in windows)
+            //        {
+            //            if (newWindow != mainWindow)
+            //            {
+            //                Driver.Close();
+            //                Driver.SwitchTo().Window(mainWindow);
+            //                break;
+            //            }
+            //        }
+            //        ////Wait for the new tab to finish loading content
+            //        //wait.Until(wd => wd.Title == "Selenium documentation");
+            //        //Driver.SwitchTo().Window(newWindow);
+            //        //Driver.Close();
+            //        //Driver.SwitchTo().Window(mainWindow);
+
+            //    }
+            //}
+
+
+
+            for (int i = 0; i < links.Count(); i++)
             {
-                Driver.Navigate().GoToUrl(link);
+                string currentWindow = Driver.CurrentWindowHandle;
+                var newLinks = Driver.FindElements(By.XPath
+            ("//td/a[@target= '_blank']"));
+                newLinks[i].Click();
+
                 {
                     ICollection<string> Windows = Driver.WindowHandles;
                     List<string> windows = new List<string>();
                     string newWindow = Driver.CurrentWindowHandle;
-                    
-                    //wait.Until(wd => wd.WindowHandles.Count == 2); id new window that didn't exist before in list
-                    foreach (string window in windows)
+
+                   
+                    foreach (string window in Windows)
                     {
-                        if (newWindow != mainWindow)
+                        if (newWindow != currentWindow)
                         {
                             Driver.Close();
                             Driver.SwitchTo().Window(mainWindow);
@@ -94,4 +128,5 @@ namespace Selenium_Csharp_2022
             }
         }
     }
+
 }

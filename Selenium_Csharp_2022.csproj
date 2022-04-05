@@ -90,6 +90,7 @@
     <Compile Include="Test_Elements\TestAddingNewProduct.cs" />
     <Compile Include="Test_Elements\TestAddToCard.cs" />
     <Compile Include="Test_Elements\TestLinksNewWindow.cs" />
+    <Compile Include="Test_Elements\TestBrowserLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

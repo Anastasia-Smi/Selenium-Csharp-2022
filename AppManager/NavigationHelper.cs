@@ -55,6 +55,12 @@ namespace Selenium_Csharp_2022
             return this;
         }
 
+        internal void OpenCatalogRubberDucs()
+        {
+            Driver.Navigate().GoToUrl("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
+            //return this;
+        }
+
         public NavigationHelper OpenAppearanceLogotype()
         {
             Driver.FindElement(By.CssSelector("ul#box-apps-menu #app-:nth-child(1) #doc-logotype")).Click();

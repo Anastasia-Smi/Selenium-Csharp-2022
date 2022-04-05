@@ -68,13 +68,7 @@ namespace Selenium_Csharp_2022
             return appThread.Value;
         }
 
-        //public IWebDriver Driver
-        //{
-        //    get
-        //    {
-        //        return driver;
-        //    }
-        //}
+
 
 
         public LoginHelper Auth
